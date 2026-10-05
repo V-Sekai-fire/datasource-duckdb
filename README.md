@@ -8,10 +8,14 @@ A data source that loads dataset files into the same language that states the pr
 
 ## Build and run
 
+The build needs Linux with glibc: it links with GNU ld group flags and a glibc compatibility shim.
+
     lake build
     lake exe duckdb-demo
 
 With no arguments the demo round-trips a small table through Parquet as a self-test.
+
+A package that requires this one adds the same `moreLinkArgs` that `lakefile.lean` sets.
 
 ## Licence
 
