@@ -8,7 +8,7 @@ package «lean_duckdb» where
   -- self-contained (undefined re2/fmt/mbedtls symbols); compiling the
   -- amalgamation bundles those, so `vendor/libduckdb.a` links standalone with
   -- just the C++ runtime + system libs. Downstream consumers add the same
-  -- `--start-group vendor/libduckdb.a --end-group -lstdc++ ...` (see README).
+  -- `moreLinkArgs` below.
   -- The encapsulated archive carries DuckDB's GNU C++ runtime internally (all
   -- non-`duckdb_*` symbols localized), so no libstdc++/libc++ flags are needed.
   moreLinkArgs := #[
