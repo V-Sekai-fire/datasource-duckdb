@@ -1,0 +1,23 @@
+name: lean
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  merge_group:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lean
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: lake build (.)
+        working-directory: .
+        run: |
+          lake build LeanDuckDB
